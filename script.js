@@ -1,56 +1,34 @@
-// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Form submission handler
+document.querySelectorAll('.skill-card, .project-card').forEach(card => {
+// Form submission handler (works if a .contact-form exists on the page)
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Get form values
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
 
-        // Basic validation
         if (!name || !email || !message) {
             alert('Please fill in all fields');
             return;
         }
 
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert('Please enter a valid email address');
             return;
         }
 
-        // Success message
         alert(`Thank you ${name}! Your message has been received. I'll get back to you soon.`);
-
-        // Reset form
         this.reset();
     });
 }
 
-// Add scroll animation for skill and project cards
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver(function (entries) {
+// Intersection observer for card animations (works if those elements exist on the page)
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
@@ -59,7 +37,6 @@ const observer = new IntersectionObserver(function (entries) {
     });
 }, observerOptions);
 
-// Observe cards on page load
 document.querySelectorAll('.skill-card, .project-card').forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
@@ -67,23 +44,14 @@ document.querySelectorAll('.skill-card, .project-card').forEach(card => {
     observer.observe(card);
 });
 
-// Add active nav link highlighting
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
+// Highlight active nav link based on current page
+function setActiveNav() {
     const navLinks = document.querySelectorAll('nav a');
-
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
+    const path = window.location.pathname.split('/').pop() || 'index.html';
     navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
+        const href = link.getAttribute('href');
+        link.classList.toggle('active', href === path);
     });
-});
+}
+
+document.addEventListener('DOMContentLoaded', setActiveNav);
