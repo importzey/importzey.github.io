@@ -54,4 +54,4 @@ function setActiveNav() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', setActiveNav);
+document.addEventListener('DOMContentLoaded', setActiveNav);})})
