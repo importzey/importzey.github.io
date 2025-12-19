@@ -15,7 +15,8 @@ body {
 .site-header {
     background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
     color: #fff;
-    padding: 0.75rem 1rem;
+    /* reduced header height for sleeker look */
+    padding: 0.5rem 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -305,26 +306,84 @@ section h2 {
     padding: 0 1rem;
 }
 
+.interests-page h2 {
+    font-family: 'Baloo 2', 'Rubik', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.3px;
+    color: #3b3fdf;
+    margin-bottom: 0.5rem;
+}
+
+/* Intro paragraph under the main heading */
+.interests-intro {
+    font-family: 'Rubik', sans-serif;
+    color: #4b5563;
+    margin-bottom: 0.75rem;
+    font-size: 1.02rem;
+    max-width: 72ch;
+}
+
+/* Small section descriptions */
+.section-desc {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.35;
+}
+
+.interest-section h3 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+    color: #333;
+}
+
 .interest-section {
     margin-bottom: 1.5rem;
 }
 
 .interests-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    /* allow narrower cards on small screens for better responsiveness */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
     margin-top: 0.75rem;
 }
 
 .interest-card {
-    background: linear-gradient(135deg, #f5f3ff 0%, #eef2ff 100%);
     padding: 0.75rem;
     border-radius: 12px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 6px 18px rgba(7,6,23,0.06);
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+/* playful, alternating background colors for cards */
+.interests-grid .interest-card:nth-child(1) { background: linear-gradient(135deg,#fff9e6 0%, #fff5d6 100%); }
+.interests-grid .interest-card:nth-child(2) { background: linear-gradient(135deg,#fff0f6 0%, #fff6fb 100%); }
+.interests-grid .interest-card:nth-child(3) { background: linear-gradient(135deg,#e8fff3 0%, #f7fff9 100%); }
+.interests-grid .interest-card:nth-child(4) { background: linear-gradient(135deg,#e8f0ff 0%, #f6f8ff 100%); }
+
+.interest-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(80,84,255,0.12);
+}
+
+/* active / surprise pulse */
+.interest-card.active-anim {
+    animation: popPulse 720ms cubic-bezier(.2,.9,.2,1);
+    box-shadow: 0 22px 50px rgba(80,84,255,0.14);
+}
+@keyframes popPulse {
+    0% { transform: translateY(0) scale(1); }
+    40% { transform: translateY(-10px) scale(1.06); }
+    100% { transform: translateY(0) scale(1); }
 }
 
 .interest-card img {
@@ -335,14 +394,110 @@ section h2 {
     border-radius: 8px;
     display: block;
     background: #f6f7fb;
+    transition: transform 0.4s ease, filter 0.25s ease;
+}
+
+.interest-card:hover img { transform: scale(1.06); }
+
+/* Pet-specific larger image framing — show whole photo without cropping */
+.pet-image {
+    width: 100%;
+    height: 260px; /* container height; image will scale to fit without cropping */
+    object-fit: contain; /* show entire image */
+    object-position: center center; /* center inside the container */
+    border-radius: 6px; /* keep rectangular with slight rounding */
+    background: #ffffff; /* white background when aspect ratio doesn't fill container */
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: transform 0.35s ease, filter 0.25s ease;
+}
+
+.pet-card { padding: 1rem; }
+
+.pet-card .pet-image:hover { transform: translateY(-4px) scale(1.01); filter: saturate(1.03); }
+
+/* Make pet cards wider on large screens so photos are more visible */
+@media (min-width: 900px) {
+    .pets-grid .pet-card { grid-column: span 2; }
+    .pet-image { height: 340px; }
+}
+
+@media (min-width: 1200px) {
+    .pet-image { height: 380px; }
+}
+
+@media (max-width: 880px) {
+    /* scale down pet images on medium screens */
+    .pet-image { height: 200px; }
+}
+
+@media (max-width: 480px) {
+    .pet-image { height: 150px; }
+    .interest-card img { height: 120px; }
+    .interests-grid { gap: 0.6rem; }
+    .interest-card { padding: 0.6rem; }
 }
 
 .interest-label {
-    padding-top: 0.6rem;
+    padding: 0.4rem 0.6rem;
     font-weight: 600;
     text-align: center;
     color: #111;
+    margin-top: 0.6rem;
+    display: inline-block;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(0,0,0,0.04);
 }
+
+/* fun fact popover */
+.fact-popover {
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    transform: translate(-50%, -100%);
+    background: rgba(255,255,255,0.98);
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(15,15,40,0.12);
+    font-size: 0.95rem;
+    max-width: 220px;
+    text-align: center;
+    z-index: 40;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* emoji burst */
+.emoji-burst {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    overflow: visible;
+}
+.emoji-burst span {
+    position: absolute;
+    font-size: 18px;
+    opacity: 1;
+    animation: floatUp 900ms ease-out forwards;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-110px) translateX(var(--tx)) scale(1.25); opacity: 0; }
+}
+
+/* controls */
+.interests-controls { display:flex; gap:0.6rem; margin-bottom:0.75rem; }
+.btn { background:#fff; border:1px solid rgba(0,0,0,0.06); padding:0.45rem 0.75rem; border-radius:8px; cursor:pointer; font-weight:600; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(80,84,255,0.08); }
+
+/* small responsive tweaks */
+@media (max-width: 480px) {
+    .interest-card img { height: 120px; }
+    .interests-grid { gap: 0.6rem; }
+    .interest-card { padding: 0.6rem; }
+}
+
 
 @media (max-width: 480px) {
     .interest-card img { height: 120px; }

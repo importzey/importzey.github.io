@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interests — Zeyneb</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Rubik:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -24,36 +25,44 @@
 
     <main>
         <section id="interests" class="interests-page">
-            <h2>My Interests</h2>
+            <h2>My Interests ✨</h2>
+            <p class="interests-intro">Welcome to my colourful corner — a place for games, giggles, and furry distractions. Click any card to get a silly fact, try the <strong>Surprise me</strong> button, or shuffle the cards to mix things up. Have fun exploring! ✨</p>
+            <div class="interests-controls" aria-hidden="false">
+                <button class="btn" id="surpriseBtn" aria-label="Surprise me">Surprise me 🎲</button>
+                <button class="btn" id="shuffleBtn" aria-label="Shuffle interests">Shuffle 🔀</button>
+                <span id="actionMsg" aria-live="polite" style="margin-left:8px;color:#555;font-weight:600;font-size:0.95rem"></span>
+            </div>
 
             <div class="interest-section">
-                <h3>Games</h3>
+                <h3>Games 🎮</h3>
+                <p class="section-desc">From cozy sandbox builders to cowboy epics — games are my favourite form of storytelling and stress relief. Tap a game to see a goofy story about it.</p>
                 <div class="interests-grid">
-                    <div class="interest-card">
+                    <div class="interest-card" tabindex="0" data-fact="I once tried to build a rocket in Roblox. It only moved in my imagination.">
                         <img src="assets/images/roblox.jpeg" alt="Roblox">
-                        <p class="interest-label">Roblox</p>
+                        <p class="interest-label">Roblox 🎮</p>
                     </div>
-                    <div class="interest-card">
+                    <div class="interest-card" tabindex="0" data-fact="CS:GO taught me to aim... for snacks first, enemies second.">
                         <img src="assets/images/csgo.jpeg" alt="CS:GO">
-                        <p class="interest-label">CS:GO</p>
+                        <p class="interest-label">CS:GO 🕹️</p>
                     </div>
-                    <div class="interest-card">
+                    <div class="interest-card" tabindex="0" data-fact="In Red Dead Redemption I adopted too many horses. Sorry, ranch.">
                         <img src="assets/images/rdr.jpeg" alt="Red Dead Redemption">
-                        <p class="interest-label">Red Dead Redemption</p>
+                        <p class="interest-label">Red Dead Redemption 🐎</p>
                     </div>
                 </div>
             </div>
 
             <div class="interest-section">
-                <h3>Pets</h3>
-                <div class="interests-grid">
-                    <div class="interest-card">
-                        <img src="assets/images/mydog.jpeg" alt="My Dog">
-                        <p class="interest-label">My Dog</p>
+                <h3>Pets 🐾</h3>
+                <p class="section-desc">Meet my judgmental support crew: a snack-loving dog and a keyboard-sitting cat. Click their photos for cute (and slightly embarrassing) confessions.</p>
+                <div class="interests-grid pets-grid">
+                    <div class="interest-card pet-card" tabindex="0" data-fact="My dog judges my gaming skills and steals the controller's shadow.">
+                        <img class="pet-image" src="assets/images/mydog.jpeg" alt="My Dog" loading="lazy">
+                        <p class="interest-label">My Dog 🐶</p>
                     </div>
-                    <div class="interest-card">
-                        <img src="assets/images/cat.jpeg" alt="My Cat">
-                        <p class="interest-label">My Cat</p>
+                    <div class="interest-card pet-card" tabindex="0" data-fact="My cat's hobbies: sitting on keyboards and giving mysterious side-eyes.">
+                        <img class="pet-image" src="assets/images/cat.jpeg" alt="My Cat" loading="lazy">
+                        <p class="interest-label">My Cat 🐱</p>
                     </div>
                 </div>
             </div>
