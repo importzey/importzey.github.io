@@ -15,8 +15,8 @@ body {
 .site-header {
     background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
     color: #fff;
-    /* reduced header height for sleeker look */
-    padding: 0.5rem 0.75rem;
+    /* increased header height for better spacing */
+    padding: 0.9rem 1rem; /* taller navbar on desktop */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,7 +24,7 @@ body {
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
+} 
 
 .site-title {
     font-size: 1.1rem;
@@ -44,7 +44,7 @@ body {
 .header-nav a {
     color: rgba(255,255,255,0.92);
     text-decoration: none;
-    padding: 0.4rem 0.6rem;
+    padding: 0.5rem 0.8rem; /* increased so links align with taller header */
     border-radius: 4px;
 }
 
@@ -117,9 +117,9 @@ body {
     .hero-right { order: 2; }
     .hero-left { order: 1; }
     .hero-image { max-width: 80%; }
-    .site-header { padding: 0.5rem 0.75rem; }
+    .site-header { padding: 0.7rem 0.9rem; } /* slightly taller on mobile */
     .header-nav ul { gap: 0.5rem; }
-}
+} 
 
 nav ul {
     list-style: none;
