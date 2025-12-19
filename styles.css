@@ -11,30 +11,81 @@ body {
     background-color: #f4f4f4;
 }
 
-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    text-align: center;
-    padding: 4rem 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-header h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-nav {
-    background-color: #333;
-    padding: 1rem 0;
+/* Site header: left title, right nav */
+.site-header {
+    background: #fff;
+    color: #111;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid #eee;
+}
+
+.site-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #222;
+    text-decoration: none;
+}
+
+.header-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav a {
+    color: #333;
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+    color: #667eea;
+    background: rgba(102,126,234,0.06);
+}
+
+/* Home hero using flexbox */
+.hero {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.hero-left { flex: 1; }
+
+.hero-left h2 { font-size: 2rem; margin-bottom: 1rem; color: #111; }
+.hero-left p { color: #444; margin-bottom: 1rem; max-width: 56ch; }
+
+.hero-right { flex: 0 0 420px; display:flex; align-items:center; justify-content:center; }
+
+.hero-image {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 880px) {
+    .hero { flex-direction: column; text-align: center; }
+    .hero-right { order: 2; }
+    .hero-left { order: 1; }
+    .hero-image { max-width: 80%; }
+    .site-header { padding: 0.5rem 0.75rem; }
+    .header-nav ul { gap: 0.5rem; }
 }
 
 nav ul {

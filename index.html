@@ -7,25 +7,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Zeynab Hasanova</h1>
-        <p>Computer Science Student</p>
+    <header class="site-header">
+        <div class="header-left">
+            <a href="index.html" class="site-title">Zeynab Hasanova</a>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="resume.html">Resume</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="resume.html">Resume</a></li>
-        </ul>
-    </nav>
-
     <main>
-        <section id="home-hero">
-            <img src="profilpicture.png" alt="Zeyneb's Profile Picture" class="profile-picture">
-            <h2>Welcome</h2>
-            <p style="max-width:700px; margin:1rem auto; text-align:center;">Hi — I'm Zeyneb, I’m a university student building my skills and working on small projects. Explore my <a href="about.html">About</a>, see my <a href="projects.html">Projects</a>, or view my <a href="resume.html">Resume</a>.</p>
+        <section id="home-hero" class="hero">
+            <div class="hero-left">
+                <h2>Hi — I'm Zeynab Hasanova</h2>
+                <p>I'm a Computer Science student building useful and beautiful web experiences. I focus on learning, projects, and practical problem-solving. Explore my <a href="about.html">About</a> or see my <a href="projects.html">Projects</a>.</p>
+                <p style="margin-top:1rem;"><a href="about.html" class="btn">About me</a> <a href="projects.html" class="btn btn-ghost">Projects</a></p>
+            </div>
+            <div class="hero-right">
+                <img src="profilpicture.png" alt="Zeynab Hasanova" class="hero-image">
+            </div>
         </section>
     </main>
 
