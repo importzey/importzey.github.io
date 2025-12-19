@@ -609,20 +609,68 @@ footer {
     margin-top: 2rem;
 } 
 
+@media (max-width: 1024px) {
+    /* Large tablets: slightly reduce hero spacing and project card widths */
+    .hero { gap: 1.25rem; max-width: 920px; }
+    .hero-right { flex: 0 0 320px; }
+    #home-hero .hero-image { max-width: 320px; }
+    .projects-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+}
+
+@media (max-width: 880px) {
+    /* Medium breakpoint: stack hero content, tighten padding */
+    .hero { flex-direction: column; text-align: center; gap: 1rem; }
+    .hero-right { order: 2; }
+    .hero-left { order: 1; }
+    #home-hero .hero-image { max-width: 200px; }
+
+    /* make navigation wrap and center; slightly larger tap targets */
+    .site-header { padding: 0.7rem 0.9rem; }
+    .header-nav ul { gap: 0.6rem; justify-content: center; }
+    .header-nav a { font-size: 0.95rem; padding: 0.45rem 0.7rem; }
+
+    main { padding: 0 0.75rem; }
+    section { padding: 1.25rem; }
+}
+
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
+    /* Tablets and small devices: further scale fonts and ensure readable content */
+    body { font-size: 15.5px; }
+    .site-title { font-size: 1rem; }
+    .hero-left h2 { font-size: 1.6rem; }
 
-    nav ul {
-        gap: 1rem;
-    }
+    /* project gallery becomes easier to scan on narrow screens */
+    .project-gallery { grid-template-columns: repeat(1, 1fr); }
 
-    main {
-        padding: 0 0.5rem;
-    }
+    /* touch-friendly buttons */
+    .btn, button { padding: 0.8rem 1rem; }
+}
 
-    section {
-        padding: 1.5rem;
-    }
+@media (max-width: 480px) {
+    /* Phones: compact layout, larger tap targets */
+    body { font-size: 15px; }
+    .site-header { padding: 0.7rem 0.7rem; }
+    .header-nav ul { gap: 0.4rem; }
+    .header-nav a { display: inline-block; padding: 0.6rem 0.85rem; font-size: 0.95rem; }
+
+    /* hero image smaller and centered */
+    #home-hero .hero-image { max-width: 140px; }
+    .hero-left p { font-size: 14px; }
+
+    /* ensure readable card spacing on tiny screens */
+    .interests-grid { grid-template-columns: repeat(1, 1fr); }
+    .projects-grid { grid-template-columns: repeat(1, 1fr); }
+
+    /* keep buttons comfortable for touch */
+    .btn, button { padding: 0.9rem 1rem; font-size: 0.95rem; }
+
+    /* touch target sizes for footer icons */
+    .footer-icons a { width: 36px; height: 36px; }
+}
+
+/* Accessibility: visible focus for keyboard users */
+:focus {
+    outline: 3px solid rgba(102,126,234,0.18);
+    outline-offset: 2px;
+    border-radius: 6px;
 }
