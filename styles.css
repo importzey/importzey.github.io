@@ -399,39 +399,50 @@ section h2 {
 
 .interest-card:hover img { transform: scale(1.06); }
 
-/* Pet-specific larger image framing — show whole photo without cropping */
-.pet-image {
-    width: 100%;
-    height: 260px; /* container height; image will scale to fit without cropping */
-    object-fit: contain; /* show entire image */
-    object-position: center center; /* center inside the container */
-    border-radius: 6px; /* keep rectangular with slight rounding */
-    background: #ffffff; /* white background when aspect ratio doesn't fill container */
-    border: 1px solid rgba(0,0,0,0.04);
-    transition: transform 0.35s ease, filter 0.25s ease;
+/* Pet-specific: allow taller images, preserve aspect ratio, and let card grow */
+.pet-card {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* image fills card width */
+    gap: 0.6rem;
 }
 
-.pet-card { padding: 1rem; }
+.pet-image {
+    width: 100%;          /* fill card width */
+    height: auto;         /* preserve original aspect ratio */
+    max-height: 75vh;     /* allow tall visuals while respecting viewport */
+    object-fit: contain;  /* show entire image without cropping */
+    object-position: center center;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 6px;
+    box-shadow: 0 12px 30px rgba(15,15,40,0.08);
+    transition: transform 0.35s ease, filter 0.25s ease, box-shadow 0.25s ease;
+}
 
-.pet-card .pet-image:hover { transform: translateY(-4px) scale(1.01); filter: saturate(1.03); }
+.pet-card .pet-image:hover { transform: translateY(-6px) scale(1.02); filter: saturate(1.04); box-shadow: 0 18px 46px rgba(15,15,40,0.12); }
 
 /* Make pet cards wider on large screens so photos are more visible */
 @media (min-width: 900px) {
-    .pets-grid .pet-card { grid-column: span 2; }
-    .pet-image { height: 340px; }
+    /* show pets as 3 columns on larger screens so all three fit in one row */
+    .pets-grid { grid-template-columns: repeat(3, minmax(220px, 1fr)); }
+    .pets-grid .pet-card { grid-column: span 1; }
+    .pet-image { max-height: 65vh; }
 }
 
 @media (min-width: 1200px) {
-    .pet-image { height: 380px; }
+    .pet-image { max-height: 90vh; }
 }
 
 @media (max-width: 880px) {
     /* scale down pet images on medium screens */
-    .pet-image { height: 200px; }
+    .pet-image { max-height: 55vh; }
 }
 
 @media (max-width: 480px) {
-    .pet-image { height: 150px; }
+    .pet-image { max-height: 30vh; }
     .interest-card img { height: 120px; }
     .interests-grid { gap: 0.6rem; }
     .interest-card { padding: 0.6rem; }
