@@ -427,7 +427,8 @@ section h2 {
 .pet-image {
     width: 100%;          /* fill card width */
     height: auto;         /* preserve original aspect ratio */
-    max-height: 75vh;     /* allow tall visuals while respecting viewport */
+    min-height: 260px;    /* ensure images are visible and prominent */
+    max-height: 85vh;     /* allow taller visuals while respecting viewport */
     object-fit: contain;  /* show entire image without cropping */
     object-position: center center;
     border-radius: 8px;
@@ -445,20 +446,20 @@ section h2 {
     /* show pets as 3 columns on larger screens so all three fit in one row */
     .pets-grid { grid-template-columns: repeat(3, minmax(220px, 1fr)); }
     .pets-grid .pet-card { grid-column: span 1; }
-    .pet-image { max-height: 65vh; }
+    .pet-image { max-height: 80vh; }
 }
 
 @media (min-width: 1200px) {
-    .pet-image { max-height: 90vh; }
+    .pet-image { max-height: 95vh; }
 }
 
 @media (max-width: 880px) {
     /* scale down pet images on medium screens */
-    .pet-image { max-height: 55vh; }
+    .pet-image { max-height: 65vh; }
 }
 
 @media (max-width: 480px) {
-    .pet-image { max-height: 30vh; }
+    .pet-image { max-height: 40vh; }
     .interest-card img { height: 120px; }
     .interests-grid { gap: 0.6rem; }
     .interest-card { padding: 0.6rem; }
